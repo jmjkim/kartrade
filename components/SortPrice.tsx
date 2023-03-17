@@ -1,14 +1,14 @@
-import { Flex, Select, Spacer } from "@chakra-ui/react"
+import { Select, Flex, Box } from "@chakra-ui/react"
 
 const SortPrice = () => {
     return (
-        <Flex w={"425px"} justify="space-between">
-            <Select placeholder="Sort By" border="0" width="20vw">
+        <Flex w="100%" justify="space-between" px="25px" gap="40%">
+            <Select variant="unstyled" placeholder="Sort By" fontSize="fs1">
                 <option value="1">value1</option>
                 <option value="2">value2</option>
             </Select>
-            
-            <Select placeholder="Price ($)" border="0" width="20vw">
+
+            <Select variant="unstyled" placeholder="Price ($)" fontSize="fs1">
                 <option value="high2low">Price: high to low</option>
                 <option value="low2high">Price: low to high</option>
             </Select>

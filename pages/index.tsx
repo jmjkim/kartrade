@@ -1,9 +1,10 @@
 import { useEffect } from "react"
-import { VStack, StackDivider, Box, Center } from "@chakra-ui/react"
+import { Box, Divider } from "@chakra-ui/react"
 import TopNav from "../components/TopNav"
 import SortPrice from "@/components/SortPrice"
 import MainCardDisplayer from "@/components/card/MainCardDisplayer"
 import CardDisplayer from "@/components/card/CardDisplayer"
+import Footer from "@/components/Footer"
 
 export default function Home({ data }: any[]) {
   useEffect(() => {
@@ -11,22 +12,31 @@ export default function Home({ data }: any[]) {
   }, [])
   
   return (
-        <VStack
-          divider={<StackDivider borderColor="#E5E5E5" />}
-          spacing="4"
-          maxW="425px"
-          minH="100%"
-          bg="#FFF"
-          border={"1px solid"}
-        >
-          <Box pos="fixed" bg="#FFF" top="0" zIndex="9999" borderBottom="1px solid #E5E5E5" py="16px">
-            <TopNav />
-          </Box>
-          <SortPrice />
-          <MainCardDisplayer />
-          <CardDisplayer cards={data} />
-        </VStack>
-    )
+    <Box bg="gray.100">
+      <Box ml="50%" maxW="325px" fontFamily="body" bg="white">
+        <TopNav />
+        <Divider 
+          mt="16px" 
+          mb="18px" 
+          borderBottom="bottom"
+        />
+
+        <SortPrice />
+        <Divider
+          mt="18.5px" 
+          mb="25.5px"
+          borderBottom="bottom"
+        />
+
+        <MainCardDisplayer />
+        <Divider my="25px" borderBottom="bdBottom" />
+
+        <CardDisplayer cards={data} />
+
+        <Footer />
+      </Box>
+    </Box>
+  )
 }
 
 export async function getServerSideProps() {
