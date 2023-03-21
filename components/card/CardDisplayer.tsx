@@ -10,9 +10,11 @@ import {
   Divider,
   Avatar,
 } from '@chakra-ui/react';
+import { CardData } from '@/pages/api/get-cards';
 
-const CardDisplayer = ({ cards }) => {
-  return cards.map((c: any, idx: Number) => {
+
+const CardDisplayer = (cards: CardData[]) => {
+  return cards.map((c, idx: Number) => {
     const mainImage = c.mainImage.replace('/public', '');
     const lastCardIndex = cards.length - 1;
 
@@ -26,7 +28,6 @@ const CardDisplayer = ({ cards }) => {
                 alt="card"
                 width="100%"
                 height="100%"
-                priority
               />
             </Box>
 

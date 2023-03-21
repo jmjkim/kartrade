@@ -1,16 +1,12 @@
-import { useEffect } from 'react';
+import { CardData } from '@/pages/api/get-cards';
 import { Box, Divider } from '@chakra-ui/react';
-import TopNav from '../components/TopNav';
 import SortPrice from '@/components/SortPrice';
 import MainCardDisplayer from '@/components/card/MainCardDisplayer';
 import CardDisplayer from '@/components/card/CardDisplayer';
 import Footer from '@/components/Footer';
 
-export default function Home({ data }: any[]) {
-  useEffect(() => {
-    () => getServerSideProps();
-  }, []);
 
+export default function Home({ data }: CardData[]){
   return (
     <Box>
       <Box w="100%" px="25px">
@@ -31,7 +27,7 @@ export default function Home({ data }: any[]) {
 
 export async function getServerSideProps() {
   const res = await fetch(`http://localhost:3000/api/get-cards`);
-  const data = await res.json();
+  const data: CardData[] = await res.json();
 
   return { props: { data } };
 }
