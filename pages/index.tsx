@@ -1,4 +1,5 @@
 import { CardData } from '@/pages/api/get-cards';
+import { InferGetServerSidePropsType } from 'next'
 import { Box, Divider } from '@chakra-ui/react';
 import SortPrice from '@/components/SortPrice';
 import MainCardDisplayer from '@/components/card/MainCardDisplayer';
@@ -6,7 +7,7 @@ import CardDisplayer from '@/components/card/CardDisplayer';
 import Footer from '@/components/Footer';
 
 
-export default function Home({ data }: CardData[]){
+export default function Home({ data }: InferGetServerSidePropsType<typeof getServerSideProps>){
   return (
     <Box>
       <Box w="100%" px="25px">
