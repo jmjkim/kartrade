@@ -10,9 +10,11 @@ import {
   Divider,
   Avatar,
 } from '@chakra-ui/react';
+import { CardData } from '@/pages/api/get-cards';
+import Link from 'next/link'
 
-const CardDisplayer = ({ cards }) => {
-  return cards.map((c: any, idx: Number) => {
+const CardDisplayer: React.FC<{cards: CardData[]}> = ({ cards }): any => {
+  return cards.map((c, idx: Number) => {
     const mainImage = c.mainImage.replace('/public', '');
     const lastCardIndex = cards.length - 1;
 
@@ -21,13 +23,14 @@ const CardDisplayer = ({ cards }) => {
         <Card variant="unstyled" w="100%" px="25px" mb="25px">
           <CardBody>
             <Box pb="17px">
-              <Image
-                src={mainImage}
-                alt="card"
-                width="100%"
-                height="100%"
-                priority
-              />
+              <Link href={`/card/${c.id}`}>
+                <Image
+                  src={mainImage}
+                  alt="card"
+                  width="100%"
+                  height="100%"
+                />
+              </Link>
             </Box>
 
             <VStack spacing="4" align="start">
