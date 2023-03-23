@@ -3,53 +3,53 @@ import { Dispatch, SetStateAction } from "react"
 import { CardData } from "@/pages/api/get-cards"
 
 type SortPriceProps = {
-    value: string;
+    value?: string;
     cards: CardData[];
     setCards: Dispatch<SetStateAction<CardData[]>>;
 }
 
-const sortCardsByPrice = (value: string, cards: CardData[], setCards: Dispatch<SetStateAction<CardData[]>>) => {
-    if (value === "lowToHigh") {
-        setCards([...cards].sort((a, b) => {
-            if (a.price > b.price) {
-                return 1
-            } else if (a.price < b.price) {
-                return -1
-            } else {
-                return 0
-            }
-        }))
-    }
-
-    else if (value === "highToLow") {
-        setCards([...cards].sort((a, b) => {
-            if (a.price > b.price) {
-                return -1
-            } else if (a.price < b.price) {
-                return 1
-            } else {
-                return 0
-            }
-        }))
-    } 
-
-    else {
-        setCards([...cards].sort((a, b) => {
-            if (a.id > b.id) {
-                return 1
-            } else if (a.id < b.id) {
-                return -1
-            } else {
-                return 0
-            }
-        }))
-    }
-}
-
 const SortPrice: React.FC<SortPriceProps> = ({ cards, setCards }) => {
+    const sortCardsByPrice = (value: string) => {
+        if (value === "lowToHigh") {
+            setCards([...cards].sort((a, b) => {
+                if (a.price > b.price) {
+                    return 1
+                } else if (a.price < b.price) {
+                    return -1
+                } else {
+                    return 0
+                }
+            }))
+        }
+    
+        else if (value === "highToLow") {
+            setCards([...cards].sort((a, b) => {
+                if (a.price > b.price) {
+                    return -1
+                } else if (a.price < b.price) {
+                    return 1
+                } else {
+                    return 0
+                }
+            }))
+        } 
+    
+        else {
+            setCards([...cards].sort((a, b) => {
+                if (a.id > b.id) {
+                    return 1
+                } else if (a.id < b.id) {
+                    return -1
+                } else {
+                    return 0
+                }
+            }))
+        }
+    }
+
     return (
         <Flex justify="space-between" fontSize="fs1">
-            <select id="sort-by-price" onChange={e => sortCardsByPrice(e.target.value, cards, setCards)}>
+            <select id="sort-by-price" onChange={e => sortCardsByPrice(e.target.value)}>
                 <option value="default">Price ($)</option>
                 <option value="lowToHigh">Low to High</option>
                 <option value="highToLow">High to Low</option>

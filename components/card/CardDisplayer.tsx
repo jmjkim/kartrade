@@ -9,12 +9,13 @@ import {
   Heading,
   Divider,
   Avatar,
+  ChakraComponent,
 } from '@chakra-ui/react';
 import { CardData } from '@/pages/api/get-cards';
 import Link from 'next/link'
 
-const CardDisplayer: React.FC<{cards: CardData[]}> = ({ cards }) => {
-  return cards.map((c, idx: Number) => {
+const CardDisplayer: ChakraComponent<ChakraComponent<"div", {}>> = ({ cards }) => {
+  return cards.map((c: CardData, idx: Number) => {
     const mainImage = c.mainImage.replace('/public', '');
     const lastCardIndex = cards.length - 1;
 
