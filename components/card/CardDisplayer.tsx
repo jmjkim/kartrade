@@ -13,7 +13,7 @@ import {
 import { CardData } from '@/pages/api/get-cards';
 import Link from 'next/link'
 
-const CardDisplayer: React.FC<{cards: CardData[]}> = ({ cards }): any => {
+const CardDisplayer: React.FC<{cards: CardData[]}> = ({ cards }) => {
   return cards.map((c, idx: Number) => {
     const mainImage = c.mainImage.replace('/public', '');
     const lastCardIndex = cards.length - 1;
@@ -47,9 +47,9 @@ const CardDisplayer: React.FC<{cards: CardData[]}> = ({ cards }): any => {
 
               <Text>{c.description}</Text>
 
-              <Text fontSize="fs5" lineHeight="lh2">
+              <Heading fontSize="fs5" lineHeight="lh2" fontWeight="medium">
                 {`USD ${c.price}`}
-              </Text>
+              </Heading>
             </VStack>
           </CardBody>
         </Card>

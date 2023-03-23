@@ -8,48 +8,12 @@ import CardDisplayer from '@/components/card/CardDisplayer';
 import Footer from '@/components/Footer';
 
 export default function Home({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [ sortedCards, setSortedCards ] = useState(data)
-
-  const sortCardPriceLowToHigh = () => {
-    const sortCardPriceLowToHigh = [...sortedCards].sort((a, b) => {
-      if (a.price > b.price) {
-        return 1
-      } else if (a.price < b.price) {
-        return -1
-      } else {
-        return 0
-      }
-    })
-
-    setSortedCards(sortCardPriceLowToHigh)
-  }
-
-  const sortCardPriceHighToLow = () => {
-    const sortCardPriceHighToLow = [...sortedCards].sort((a, b) => {
-      if (a.price > b.price) {
-        return -1
-      } else if (a.price < b.price) {
-        return 1
-      } else {
-        return 0
-      }
-    })
-
-    setSortedCards(sortCardPriceHighToLow)
-  }
-  
-  const sortCardPriceDefault = () => {
-    setSortedCards(data)
-  }
+  const [ cards, setCards ] = useState(data)
 
   return (
     <Box>
       <Box w="100%" px="25px">
-        <SortPrice 
-          sortCardPriceDefault={sortCardPriceDefault} 
-          sortCardPriceLowToHigh={sortCardPriceLowToHigh} 
-          sortCardPriceHighToLow={sortCardPriceHighToLow} 
-        />
+        <SortPrice cards={cards} setCards={setCards} />
       </Box>
       <Divider mt="18.5px" mb="25.5px" borderBottom="bottom" />
 
@@ -58,7 +22,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSer
       </Box>
       <Divider my="25px" borderBottom="bdBottom" />
 
-      <CardDisplayer cards={sortedCards} />
+      <CardDisplayer cards={cards} />
       <Footer />
     </Box>
   );
