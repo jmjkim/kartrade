@@ -1,17 +1,65 @@
-import { Select, Flex, Box } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
+import { Dispatch, SetStateAction } from "react"
+import { CardData } from "@/pages/api/get-cards"
 
-const SortPrice = () => {
+type SortPriceProps = {
+    value?: string;
+    cards: CardData[];
+    setCards: Dispatch<SetStateAction<CardData[]>>;
+}
+
+const SortPrice: React.FC<SortPriceProps> = ({ cards, setCards }) => {
+    const sortCardsByPrice = (value: string) => {
+        if (value === "lowToHigh") {
+            setCards([...cards].sort((a, b) => {
+                if (a.price > b.price) {
+                    return 1
+                } else if (a.price < b.price) {
+                    return -1
+                } else {
+                    return 0
+                }
+            }))
+        }
+    
+        else if (value === "highToLow") {
+            setCards([...cards].sort((a, b) => {
+                if (a.price > b.price) {
+                    return -1
+                } else if (a.price < b.price) {
+                    return 1
+                } else {
+                    return 0
+                }
+            }))
+        } 
+    
+        else {
+            setCards([...cards].sort((a, b) => {
+                if (a.id > b.id) {
+                    return 1
+                } else if (a.id < b.id) {
+                    return -1
+                } else {
+                    return 0
+                }
+            }))
+        }
+    }
+
     return (
-        <Flex w="100%" justify="space-between" px="25px" gap="40%">
-            <Select variant="unstyled" placeholder="Sort By" fontSize="fs1">
-                <option value="1">value1</option>
-                <option value="2">value2</option>
-            </Select>
+        <Flex justify="space-between" fontSize="fs1">
+            <select id="sort-by-price" onChange={e => sortCardsByPrice(e.target.value)}>
+                <option value="default">Price ($)</option>
+                <option value="lowToHigh">Low to High</option>
+                <option value="highToLow">High to Low</option>
+            </select>
 
-            <Select variant="unstyled" placeholder="Price ($)" fontSize="fs1">
-                <option value="high2low">Price: high to low</option>
-                <option value="low2high">Price: low to high</option>
-            </Select>
+            <select id="sort-by">
+                <option value="">Sort By</option>
+                <option value="1">value 123</option>
+                <option value="2">value 456</option>
+            </select>
         </Flex>
     )
 }
