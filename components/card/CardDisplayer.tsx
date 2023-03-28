@@ -9,32 +9,34 @@ import {
   Heading,
   Divider,
   Avatar,
-  ChakraComponent
 } from '@chakra-ui/react';
 import { CardData } from '@/pages/api/get-cards';
-import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/router';
 
 const CardDisplayer: React.FC<{ cards: CardData[] }> = ({ cards }) => {
+  const router = useRouter()
+  const lastCardIndex = cards.length - 1;
   const getImage = (c: CardData) => {
     return c.mainImage.replace('/public', '');
   };
-  const lastCardIndex = cards.length - 1;
 
   return (
     <>
-      {cards.map((c: CardData, idx: Number) => (<Box key={c.id}>
+      {cards.map((c: CardData, idx: Number) => (
+        <Box key={c.id}>
           <Card variant='unstyled' w='100%' px='25px' mb='25px'>
             <CardBody>
               <Box pb='17px'>
-                <Link href={`/card/${c.id}`}>
-                  <Image
-                    src={getImage(c)}
-                    alt='card'
-                    width='100%'
-                    height='100%'
-                  />
-                </Link>
+                <Image
+                  src={getImage(c)}
+                  alt='card'
+                  width='100%'
+                  height='100%'
+                  onClick={() => router.push({
+                    pathname: '/card/[cid]',
+                    query: { cid: c.id },
+                  })}
+                />
               </Box>
 
               <VStack spacing='4' align='start'>

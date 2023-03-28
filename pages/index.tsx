@@ -11,7 +11,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSer
   const [ cards, setCards ] = useState(data)
 
   return (
-    <Box>
+    <>
       <Box w="100%" px="25px">
         <SortPrice cards={cards} setCards={setCards} />
       </Box>
@@ -24,7 +24,7 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSer
 
       <CardDisplayer cards={cards} />
       <Footer />
-    </Box>
+    </>
   );
 }
 
