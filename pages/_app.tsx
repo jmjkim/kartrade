@@ -8,7 +8,7 @@ import {
   Divider,
   Flex,
 } from '@chakra-ui/react';
-import LogoGroup2751 from '../public/nav/LogoGroup2751.svg';
+import LogoGroup2751 from '../asset/icon/nav/LogoGroup2751.svg'
 import TopNav from '@/components/TopNav';
 
 const backgroundImageSize = [0, 0, 400];

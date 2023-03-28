@@ -11,7 +11,7 @@ export type CardData = {
   nickname: string;
 };
 
-const dummyCardInfo: CardData[] = [
+export const dummyCardInfo: CardData[] = [
   {
     id: 1,
     mainImage: '/public/photocard/photo1.svg',

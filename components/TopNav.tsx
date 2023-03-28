@@ -1,9 +1,9 @@
 import { Flex } from '@chakra-ui/react';
 import Image from 'next/image';
-import LogoGroup2751 from '../public/nav/LogoGroup2751.svg';
-import LogoGroup2752 from '../public/nav/LogoGroup2752.svg';
-import searchVector from '../public/nav/searchVector.svg';
-import menuVector from '../public/nav/menuVector.svg';
+import LogoGroup2751 from '../asset/icon/nav/LogoGroup2751.svg';
+import LogoGroup2752 from '../asset/icon/nav/LogoGroup2752.svg';
+import searchVector from '../asset/icon/nav/searchVector.svg';
+import menuVector from '../asset/icon/nav/menuVector.svg';
 
 const TopNav = () => {
   return (
