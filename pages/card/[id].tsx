@@ -1,32 +1,22 @@
-import { CardData } from '../api/get-cards';
+import React from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import send_message_logo from '../../asset/icon/send_message_logo.svg';
-import ChakraImage from '@/components/ChakraImage';
+import { CardData } from '../api/get-cards';
+import CardDetailHeader from '@/components/card/CardDetailHeader';
+import CardDetailDescription from '@/components/card/CardDetailDescription';
 import CardDetailBreadcrumb from '@/components/card/CardDetailBreadcrumb';
+import CardDetailImages from '@/components/card/CardDetailImages';
+import CardDetailIncludedItems from '@/components/card/CardDetailIncludedItems';
+import CardDetailShippingReturn from '@/components/card/CardDetailShippingReturn';
 import QuantitySelector from '@/components/card/QuantitySelector';
-import SendMessageButton from '@/components/card/SendMessageButton';
+import SendMessageButton from '@/components/SendMessageButton';
 import WishListButton from '@/components/WishListButton';
 import {
-  Image,
   Card,
   CardBody,
   Box,
-  VStack,
-  HStack,
-  Text,
   Flex,
-  Heading,
   Divider,
-  Avatar,
 } from '@chakra-ui/react';
-
-const getAvatarImage = (c: CardData): string => {
-  return c.mainImage.replace('/public', '');
-};
-
-const getImages = (c: CardData): string[] => {
-  return c.detailImage.map((img) => img.replace('/public', ''));
-};
 
 const CardDetailDisplayer = ({
   card,
@@ -39,58 +29,30 @@ const CardDetailDisplayer = ({
       <Box key={card.id} w="100%" px="25px">
         <Card variant="unstyled" w="100%" pt="27px">
           <CardBody>
-            <Flex justify="space-between" align="center" pb="19px">
-              <HStack>
-                <Avatar src={getAvatarImage(card)} w="38px" h="38px" />
-                <Text>@{card.nickname}</Text>
-              </HStack>
-
-              <HStack>
-                <ChakraImage
-                  src={send_message_logo}
-                  alt="message"
-                  width={19}
-                  height={19}
-                />
-                <Text fontSize="fs1">Send Message</Text>
-              </HStack>
-            </Flex>
-
+            <CardDetailHeader card={card} />
             <Divider borderBottom="bdBottom" />
 
-            <VStack spacing="4" align="start" py="28px">
-              <Heading fontWeight="medium" fontSize="fs4" lineHeight="lh1">
-                {card.title}
-              </Heading>
+            <CardDetailDescription card={card} />
+            <Divider borderBottom="bdBottom" pb="28px" />
 
-              <Text>{card.description}</Text>
-
-              <Heading fontSize="fs5" lineHeight="lh2" fontWeight="medium">
-                {`USD ${card.price}`}
-              </Heading>
-              <Text>Local Taxes included (where applicable)</Text>
-            </VStack>
-
-            <Divider borderBottom="bdBottom" mb="15px" />
-
-            {getImages(card).map((img, i: number) => {
-              return (
-                <Box key={i}>
-                  <Image src={img} alt="card" width="100%" height="100%" />
-                  <Divider borderBottom="bdBottom" pt="15px" />
-                </Box>
-              );
-            })}
+            <CardDetailImages card={card} />
           </CardBody>
         </Card>
-      </Box>
 
-      <QuantitySelector />
-
-      <Flex justify="space-evenly">
-        <SendMessageButton />
-        <WishListButton />
+      <Flex flexDir="column" align="center" w="100%" pb="40px">
+        <QuantitySelector />
+        <Flex w="100%" justify="space-between">
+          <SendMessageButton />
+          <WishListButton />
+        </Flex>
       </Flex>
+      <Divider borderBottom="bdBottom" mb="29px"/>
+
+      <CardDetailIncludedItems />
+      <Divider borderBottom="bdBottom" />
+
+      <CardDetailShippingReturn />
+      </Box>
     </>
   );
 };
@@ -99,7 +61,7 @@ export default CardDetailDisplayer;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const res = await fetch(
-    `http://localhost:3000/api/card/${context.params.id}`
+    `http://localhost:3000/api/card/${context.query.id}`
   );
   const card: CardData = await res.json();
 

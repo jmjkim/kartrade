@@ -3,7 +3,7 @@ import { CardData } from '@/pages/api/get-cards';
 
 const CardDetailDescription: React.FC<{ card: CardData }> = ({ card }) => {
     return (
-        <VStack spacing="4" align="start" py="28px">
+        <VStack spacing="4" align="start" pt="28px">
             <Heading fontWeight="medium" fontSize="fs4" lineHeight="lh1">
               {card.title}
             </Heading>
