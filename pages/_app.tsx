@@ -8,8 +8,9 @@ import {
   Divider,
   Flex,
 } from '@chakra-ui/react';
-import LogoGroup2751 from '../asset/icon/nav/LogoGroup2751.svg'
+import LogoGroup2751 from '../asset/icon/nav/LogoGroup2751.svg';
 import TopNav from '@/components/TopNav';
+import Footer from '@/components/Footer';
 
 const backgroundImageSize = [0, 0, 400];
 
@@ -83,6 +84,10 @@ export default function App({ Component, pageProps }: AppProps) {
           <main>
             <Component {...pageProps} />
           </main>
+
+          <footer>
+            <Footer />
+          </footer>
         </Box>
       </Flex>
     </ChakraProvider>

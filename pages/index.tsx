@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { CardData } from '@/pages/api/get-cards';
-import { InferGetServerSidePropsType } from 'next'
+import { CardData } from '@/pages/api/cards';
+import { InferGetServerSidePropsType } from 'next';
 import { Box, Divider } from '@chakra-ui/react';
 import SortPrice from '@/components/SortPrice';
 import MainCardDisplayer from '@/components/card/MainCardDisplayer';
 import CardDisplayer from '@/components/card/CardDisplayer';
-import Footer from '@/components/Footer';
 
-export default function Home({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [ cards, setCards ] = useState(data)
+export default function Home({
+  data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const [cards, setCards] = useState(data);
 
   return (
     <>
@@ -23,13 +24,12 @@ export default function Home({ data }: InferGetServerSidePropsType<typeof getSer
       <Divider my="25px" borderBottom="bdBottom" />
 
       <CardDisplayer cards={cards} />
-      <Footer />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/get-cards`);
+  const res = await fetch(`http://localhost:3000/api/cards`);
   const data: CardData[] = await res.json();
 
   return { props: { data } };

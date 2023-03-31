@@ -1,6 +1,6 @@
 import React from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { CardData } from '../api/get-cards';
+import { CardData } from '../api/cards';
 import CardDetailHeader from '@/components/card/CardDetailHeader';
 import CardDetailDescription from '@/components/card/CardDetailDescription';
 import CardDetailBreadcrumb from '@/components/card/CardDetailBreadcrumb';
@@ -10,13 +10,8 @@ import CardDetailShippingReturn from '@/components/card/CardDetailShippingReturn
 import QuantitySelector from '@/components/card/QuantitySelector';
 import SendMessageButton from '@/components/SendMessageButton';
 import WishListButton from '@/components/WishListButton';
-import {
-  Card,
-  CardBody,
-  Box,
-  Flex,
-  Divider,
-} from '@chakra-ui/react';
+import Footer from '@/components/Footer';
+import { Card, CardBody, Box, Flex, Divider } from '@chakra-ui/react';
 
 const CardDetailDisplayer = ({
   card,
@@ -39,20 +34,31 @@ const CardDetailDisplayer = ({
           </CardBody>
         </Card>
 
-      <Flex flexDir="column" align="center" w="100%" pb="40px">
-        <QuantitySelector />
-        <Flex w="100%" justify="space-between">
+        <Flex flexDir="column" align="center" w="100%" pt="40px" pb="25px">
+          <QuantitySelector />
+        </Flex>
+
+        <Flex
+          w="100%"
+          py="15px"
+          backgroundColor="white"
+          position={'sticky'}
+          bottom={0}
+          justify="space-between"
+        >
           <SendMessageButton />
           <WishListButton />
         </Flex>
-      </Flex>
-      <Divider borderBottom="bdBottom" mb="29px"/>
 
-      <CardDetailIncludedItems />
-      <Divider borderBottom="bdBottom" />
+        <Divider borderBottom="bdBottom" mb="29px" />
 
-      <CardDetailShippingReturn />
+        <CardDetailIncludedItems />
+        <Divider borderBottom="bdBottom" />
+
+        <CardDetailShippingReturn />
       </Box>
+
+      <Divider borderBottom="bdBottom" mb="50px" />
     </>
   );
 };
@@ -60,9 +66,7 @@ const CardDetailDisplayer = ({
 export default CardDetailDisplayer;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const res = await fetch(
-    `http://localhost:3000/api/card/${context.query.id}`
-  );
+  const res = await fetch(`http://localhost:3000/api/cards/${context.query.id}`);
   const card: CardData = await res.json();
 
   return { props: { card } };

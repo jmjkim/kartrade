@@ -8,7 +8,7 @@ const QuantitySelector = () => {
     const [ quantity, setQuantity ] = useState(0)
 
     return (
-        <Box w='100%' fontWeight='medium' py='40px'>
+        <Box w='100%' fontWeight='medium'>
             <HStack spacing={8}>
                 <Text as='b'>Quantity</Text>
                 <ChakraImage
