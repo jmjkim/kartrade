@@ -18,6 +18,13 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/EnlargedLogo.tsx", "components/TopNav.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/EnlargedLogo.tsx",
+    "components/TopNav.tsx",
+    "pages/card/[id].tsx"
+  ],
   "exclude": ["node_modules"]
 }
