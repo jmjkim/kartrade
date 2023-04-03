@@ -1,6 +1,10 @@
 import '@/styles/globals.css';
+import BackgroundImageDisplayer from '@/components/BackgroundImageDisplayer';
+import { useState } from 'react';
 import type { AppProps } from 'next/app';
-import ChakraImage from '@/components/ChakraImage';
+import TopNav from '@/components/TopNav';
+import SearchBar from '@/components/SearchBar';
+import Footer from '@/components/Footer';
 import {
   ChakraProvider,
   extendTheme,
@@ -8,11 +12,6 @@ import {
   Divider,
   Flex,
 } from '@chakra-ui/react';
-import LogoGroup2751 from '../asset/icon/nav/LogoGroup2751.svg';
-import TopNav from '@/components/TopNav';
-import Footer from '@/components/Footer';
-
-const backgroundImageSize = [0, 0, 400];
 
 const theme = extendTheme({
   sizes: {
@@ -50,9 +49,19 @@ const theme = extendTheme({
     white: '#fff',
     gradientGray: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)',
   },
+
+  borders: {
+    bdBottom: '1px solid #D8D8D8',
+  }
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [ flag, setFlag ] = useState(false)
+
+  const handleClick = (): void => {
+    setFlag(flag => !flag)
+  }
+
   return (
     <ChakraProvider theme={theme}>
       <Flex
@@ -61,15 +70,7 @@ export default function App({ Component, pageProps }: AppProps) {
         justify="space-evenly"
         // backgroundImage="url('/nav/LogoGroup2751.svg')"
       >
-        <Box minW={backgroundImageSize} minH={400}>
-          <ChakraImage
-            src={LogoGroup2751}
-            alt="logo"
-            width={backgroundImageSize}
-            height={backgroundImageSize}
-          />
-        </Box>
-
+        <BackgroundImageDisplayer />
         <Box
           maxH="100vh"
           overflowY="scroll"
@@ -78,16 +79,16 @@ export default function App({ Component, pageProps }: AppProps) {
           bg="white"
           zIndex={1}
         >
-          <TopNav />
-          <Divider mt="16px" mb="18px" borderBottom="bottom" />
+          <TopNav handleClick={handleClick} />
+          { flag ? <SearchBar /> : null }
+          <Divider mt="16px" mb="18px" borderBottom="bdBottom" />
+
 
           <main>
             <Component {...pageProps} />
           </main>
 
-          <footer>
-            <Footer />
-          </footer>
+          <Footer />
         </Box>
       </Flex>
     </ChakraProvider>
