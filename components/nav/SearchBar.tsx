@@ -23,7 +23,17 @@ const SearchBar = ({ handleClick }) => {
     return (
         <Flex zIndex={1} pos="absolute" width={['100%', '380px']} px="25px" py="20px" backgroundColor="white" borderTop="bdBottom" borderBottom="bdBottom">
             <ChakraImage src={searchIcon} alt="search" />
-            <Input type="text" onKeyDown={e => handleInputSubmit(e.key)} onChange={e => handleInputChange(e.target.value)} value={searchInput} variant='unstyled' placeholder="Search by card, person or group" htmlSize={2} fontSize="fs3" size="lg" width="100%" />
+            <Input 
+                type="text" 
+                onKeyDown={e => handleInputSubmit(e.key)} 
+                onChange={e => handleInputChange(e.target.value)} 
+                value={searchInput} 
+                variant='unstyled' 
+                placeholder="Search by card, person or group" 
+                htmlSize={2} 
+                fontSize="fs3" 
+                size="lg" 
+                width="100%" />
         </Flex>
     )
 }

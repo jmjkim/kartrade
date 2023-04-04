@@ -3,9 +3,8 @@ import { InferGetServerSidePropsType } from "next"
 import { GetServerSidePropsContext } from "next"
 import { CardData } from "../api/cards"
 
-
 const SearchResult = ({ cards }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-    return null
+  return <CardDisplayer cards={cards} />
 }
 
 export default SearchResult

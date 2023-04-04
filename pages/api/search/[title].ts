@@ -6,7 +6,7 @@ export default function handler(
   res: NextApiResponse<CardData | Object>
 ) {
   const { title } = req.query;
-  const cardFound = dummyCardInfo.filter((card) => { return card.title.includes(title) });
+  const cardFound = dummyCardInfo.filter((card) => card.title.includes(title));
 
   if (cardFound) {
     res.status(200).json(cardFound);

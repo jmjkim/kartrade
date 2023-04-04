@@ -22,7 +22,9 @@ const SortPrice: React.FC<SortPriceProps> = ({ cards, setCards }) => {
           }
         })
       );
-    } else if (value === 'highToLow') {
+    } 
+
+    else if (value === 'highToLow') {
       setCards(
         [...cards].sort((a, b) => {
           if (a.price > b.price) {
@@ -34,7 +36,9 @@ const SortPrice: React.FC<SortPriceProps> = ({ cards, setCards }) => {
           }
         })
       );
-    } else {
+    } 
+    
+    else {
       setCards(
         [...cards].sort((a, b) => {
           if (a.id > b.id) {
@@ -51,10 +55,7 @@ const SortPrice: React.FC<SortPriceProps> = ({ cards, setCards }) => {
 
   return (
     <Flex justify="space-between" fontSize="fs1" my="18.5px">
-      <select
-        id="sort-by-price"
-        onChange={(e) => sortCardsByPrice(e.target.value)}
-      >
+      <select id="sort-by-price" onChange={(e) => sortCardsByPrice(e.target.value)}>
         <option value="default">Price ($)</option>
         <option value="lowToHigh">Low to High</option>
         <option value="highToLow">High to Low</option>

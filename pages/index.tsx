@@ -14,7 +14,7 @@ export default function Home({
   return (
     <>
       <Box w="100%" px="25px">
-        <SortPrice />
+        <SortPrice cards={cards} setCards={setCards} />
       </Box>
       <Divider mt="18.5px" mb="25.5px" borderBottom="bdBottom" />
 
