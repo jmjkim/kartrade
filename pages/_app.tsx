@@ -1,15 +1,12 @@
 import '@/styles/globals.css';
 import BackgroundImageDisplayer from '@/components/BackgroundImageDisplayer';
-import { useState } from 'react';
 import type { AppProps } from 'next/app';
-import TopNav from '@/components/TopNav';
-import SearchBar from '@/components/SearchBar';
+import TopNav from '@/components/nav/TopNav';
 import Footer from '@/components/Footer';
 import {
   ChakraProvider,
   extendTheme,
   Box,
-  Divider,
   Flex,
 } from '@chakra-ui/react';
 
@@ -56,19 +53,12 @@ const theme = extendTheme({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [ flag, setFlag ] = useState(false)
-
-  const handleClick = (): void => {
-    setFlag(flag => !flag)
-  }
-
   return (
     <ChakraProvider theme={theme}>
       <Flex
         bg="gray.200"
         align="center"
         justify="space-evenly"
-        // backgroundImage="url('/nav/LogoGroup2751.svg')"
       >
         <BackgroundImageDisplayer />
         <Box
@@ -79,15 +69,10 @@ export default function App({ Component, pageProps }: AppProps) {
           bg="white"
           zIndex={1}
         >
-          <TopNav handleClick={handleClick} />
-          { flag ? <SearchBar /> : null }
-          <Divider mt="16px" mb="18px" borderBottom="bdBottom" />
-
-
+          <TopNav />
           <main>
             <Component {...pageProps} />
           </main>
-
           <Footer />
         </Box>
       </Flex>

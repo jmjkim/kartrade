@@ -25,7 +25,7 @@ const CardDisplayer: React.FC<{ cards: CardData[] }> = ({ cards }) => {
     <>
       {cards.map((c: CardData, idx: Number) => (
         <Box key={c.id}>
-          <Card variant="unstyled" w="100%" px="25px" mb="25px">
+          <Card variant="unstyled" w="100%" mb="25px" px="25px">
             <CardBody>
               <Box pb="17px">
                 <Image

@@ -4,7 +4,7 @@ import LogoGroup2752 from '../asset/icon/nav/LogoGroup2752.svg';
 
 const Footer = () => {
   return (
-    <Box as="footer" pl="25px">
+    <Box as="footer" px="25px">
       <Box my="35px">
         <Image src={LogoGroup2752} alt="brand" width={105} height={17} />
       </Box>
