@@ -54,7 +54,7 @@ const SortPrice: React.FC<SortPriceProps> = ({ cards, setCards }) => {
   };
 
   return (
-    <Flex justify="space-between" fontSize="fs1" my="18.5px">
+    <Flex justify="space-between" fontSize="fs1" px="25px" my="18.5px">
       <select id="sort-by-price" onChange={(e) => sortCardsByPrice(e.target.value)}>
         <option value="default">Price ($)</option>
         <option value="lowToHigh">Low to High</option>

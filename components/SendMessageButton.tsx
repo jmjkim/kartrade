@@ -1,20 +1,25 @@
-import { HStack, Text } from '@chakra-ui/react';
-import ChakraImage from './ChakraImage';
-import whiteSendMessageLogo from '../asset/icon/whiteSendMessageLogo.svg'
+import { Text, Button } from '@chakra-ui/react';
+import ChakraImage from './utils/ChakraImage';
+import whiteSendMessageLogo from '../asset/icon/whiteSendMessageLogo.svg';
 
 const SendMessageButton = () => {
   return (
-    <HStack
-      w={152}
-      h={55}
-      bg="#1B1B1B"
-      borderRadius="74px"
-      align="center"
-      justify="center"
-    >
-        <ChakraImage src={whiteSendMessageLogo} alt="message" />
-        <Text as='b' fontSize='fs1' color="white">SEND MESSAGE</Text>
-    </HStack>
+    <>
+      <Button 
+        leftIcon={<ChakraImage src={whiteSendMessageLogo} alt="message" />}
+        bg="#1B1B1B"
+        colorScheme="white"
+        borderRadius="74px"
+        width="152px"
+        height="55px"
+        alignContent="center"
+        justifyContent="center"
+      >
+        <Text fontSize="fs1">
+          SEND MESSAGE
+        </Text>
+      </Button>
+    </>
   );
 };
 

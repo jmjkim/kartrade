@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { CardData } from '@/pages/api/cards';
-import { InferGetServerSidePropsType } from 'next';
+import { InferGetServerSidePropsType} from 'next';
 import { Box, Divider } from '@chakra-ui/react';
-import MainCardDisplayer from '@/components/MainCardDisplayer';
+import MainCardDisplayer from '@/components/card/MainCardDisplayer';
+import LoginPage from '@/components/main/LoginPage';
 import CardDisplayer from '@/components/CardDisplayer';
 import SortPrice from '@/components/nav/SortPrice';
 
@@ -10,12 +11,15 @@ export default function Home({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [cards, setCards] = useState(data);
+  const [ showLoginPage, setShowLoginPage ] = useState(false)
 
   return (
     <>
-      <Box w="100%" px="25px">
-        <SortPrice cards={cards} setCards={setCards} />
-      </Box>
+      {/* 임시 로그인 전 후 화면 변환버튼 */}
+      <button onClick={() => setShowLoginPage(true)}>show logged in button</button>
+      {showLoginPage ?
+    <>
+      <SortPrice cards={cards} setCards={setCards} />
       <Divider mt="18.5px" mb="25.5px" borderBottom="bdBottom" />
 
       <Box px="25px">
@@ -24,6 +28,10 @@ export default function Home({
       <Divider my="25px" borderBottom="bdBottom" />
 
       <CardDisplayer cards={cards} />
+    </> : 
+    <>
+      <LoginPage />
+    </> }
     </>
   );
 }
