@@ -1,22 +1,15 @@
 import React from 'react';
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { CardData } from '../api/get-cards';
+import { CardData } from '../api/cards';
 import CardDetailHeader from '@/components/card/CardDetailHeader';
 import CardDetailDescription from '@/components/card/CardDetailDescription';
 import CardDetailBreadcrumb from '@/components/card/CardDetailBreadcrumb';
 import CardDetailImages from '@/components/card/CardDetailImages';
 import CardDetailIncludedItems from '@/components/card/CardDetailIncludedItems';
 import CardDetailShippingReturn from '@/components/card/CardDetailShippingReturn';
-import QuantitySelector from '@/components/card/QuantitySelector';
-import SendMessageButton from '@/components/SendMessageButton';
-import WishListButton from '@/components/WishListButton';
-import {
-  Card,
-  CardBody,
-  Box,
-  Flex,
-  Divider,
-} from '@chakra-ui/react';
+import QuantitySelector from '@/components/QuantitySelector';
+import CardDetailButtonDisplayer from '@/components/CardDetailButtonDisplayer';
+import { Card, CardBody, Box, Divider } from '@chakra-ui/react';
 
 const CardDetailDisplayer = ({
   card,
@@ -39,29 +32,26 @@ const CardDetailDisplayer = ({
           </CardBody>
         </Card>
 
-      <Flex flexDir="column" align="center" w="100%" pb="40px">
         <QuantitySelector />
-        <Flex w="100%" justify="space-between">
-          <SendMessageButton />
-          <WishListButton />
-        </Flex>
-      </Flex>
-      <Divider borderBottom="bdBottom" mb="29px"/>
+        <CardDetailButtonDisplayer />
+        <Divider borderBottom="bdBottom" mb="29px" />
 
-      <CardDetailIncludedItems />
-      <Divider borderBottom="bdBottom" />
+        <CardDetailIncludedItems />
+        <Divider borderBottom="bdBottom" />
 
-      <CardDetailShippingReturn />
+        <CardDetailShippingReturn />
       </Box>
+      <Divider borderBottom="bdBottom" mb="50px" />
     </>
   );
 };
 
 export default CardDetailDisplayer;
 
+// error handling when card is not found
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const res = await fetch(
-    `http://localhost:3000/api/card/${context.query.id}`
+    `http://localhost:3000/api/cards/${context.query.id}`
   );
   const card: CardData = await res.json();
 

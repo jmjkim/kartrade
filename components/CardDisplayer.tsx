@@ -10,7 +10,7 @@ import {
   Divider,
   Avatar,
 } from '@chakra-ui/react';
-import { CardData } from '@/pages/api/get-cards';
+import { CardData } from '@/pages/api/cards';
 import { useRouter } from 'next/navigation';
 
 const getImage = (c: CardData) => {
@@ -25,7 +25,7 @@ const CardDisplayer: React.FC<{ cards: CardData[] }> = ({ cards }) => {
     <>
       {cards.map((c: CardData, idx: Number) => (
         <Box key={c.id}>
-          <Card variant="unstyled" w="100%" px="25px" mb="25px">
+          <Card variant="unstyled" w="100%" mb="25px" px="25px">
             <CardBody>
               <Box pb="17px">
                 <Image
@@ -33,7 +33,7 @@ const CardDisplayer: React.FC<{ cards: CardData[] }> = ({ cards }) => {
                   alt="card"
                   width="100%"
                   height="100%"
-                  onClick={() => router.push(`/card/${c.id}`)}
+                  onClick={() => router.push(`/cards/${c.id}`)}
                 />
               </Box>
 
