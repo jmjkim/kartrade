@@ -1,6 +1,6 @@
 import { Box, VStack, Text } from '@chakra-ui/react';
 import Image from 'next/image';
-import LogoGroup2752 from '../asset/icon/nav/LogoGroup2752.svg';
+import LogoGroup2752 from '../../asset/icon/nav/LogoGroup2752.svg';
 
 const Footer = () => {
   return (

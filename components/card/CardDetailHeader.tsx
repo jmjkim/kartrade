@@ -1,5 +1,5 @@
 import { Flex, HStack, Text, Avatar } from '@chakra-ui/react';
-import ChakraImage from '../ChakraImage';
+import ChakraImage from '../utils/ChakraImage';
 import send_message_logo from '../../asset/icon/send_message_logo.svg';
 import { CardData } from '@/pages/api/cards';
 

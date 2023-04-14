@@ -126,5 +126,29 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<CardData[]>
 ) {
+  const { sort } = req.query
+
+  if (sort === 'price_asc') {
+    dummyCardInfo.sort((a, b) => {
+      if (a.price > b.price) {
+        return 1;
+      } else if (a.price < b.price) {
+        return -1;
+      } else {
+        return 0;
+      }
+    })
+  }
+  else if (sort === 'price_desc') {
+    dummyCardInfo.sort((a, b) => {
+      if (a.price > b.price) {
+        return -1;
+      } else if (a.price < b.price) {
+        return 1;
+      } else {
+        return 0;
+      }
+    })
+  }
   res.status(200).json(dummyCardInfo);
 }

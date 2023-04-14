@@ -1,67 +1,45 @@
 import { Flex } from '@chakra-ui/react';
-import { Dispatch, SetStateAction } from 'react';
-import { CardData } from '@/pages/api/cards';
+import { useRouter } from 'next/router';
 
-type SortPriceProps = {
-  value?: string;
-  cards: CardData[];
-  setCards: Dispatch<SetStateAction<CardData[]>>;
-};
+const SortPrice: React.FC<{}> = () => {
+  const router = useRouter()
+  const { keyword } = router.query
 
-const SortPrice: React.FC<SortPriceProps> = ({ cards, setCards }) => {
   const sortCardsByPrice = (value: string) => {
-    if (value === 'lowToHigh') {
-      setCards(
-        [...cards].sort((a, b) => {
-          if (a.price > b.price) {
-            return 1;
-          } else if (a.price < b.price) {
-            return -1;
-          } else {
-            return 0;
-          }
-        })
-      );
-    } 
-
-    else if (value === 'highToLow') {
-      setCards(
-        [...cards].sort((a, b) => {
-          if (a.price > b.price) {
-            return -1;
-          } else if (a.price < b.price) {
-            return 1;
-          } else {
-            return 0;
-          }
-        })
-      );
-    } 
-    
-    else {
-      setCards(
-        [...cards].sort((a, b) => {
-          if (a.id > b.id) {
-            return 1;
-          } else if (a.id < b.id) {
-            return -1;
-          } else {
-            return 0;
-          }
-        })
-      );
+    if (keyword !== undefined) {
+      if (value === 'price_asc') {
+        router.push(`search?keyword=${keyword}&sort=${value}`)
+      } 
+      else if (value === 'price_desc') {
+        router.push(`search?keyword=${keyword}&sort=${value}`)
+      } 
+      else {
+        router.push(`search?keyword=${keyword}`)
+      }
     }
-  };
+    else {
+      if (value === 'price_asc') {
+        router.push(`/?sort=${value}`)
+      } 
+      else if (value === 'price_desc') {
+        router.push(`/?sort=${value}`)
+      } 
+      else {
+        router.push('/')
+      }
+    }
+  }
+
 
   return (
-    <Flex justify="space-between" fontSize="fs1" my="18.5px">
-      <select id="sort-by-price" onChange={(e) => sortCardsByPrice(e.target.value)}>
+    <Flex justify="space-between" fontSize="fs1" px="25px" my="18.5px">
+      <select onChange={e => sortCardsByPrice(e.target.value)}>
         <option value="default">Price ($)</option>
-        <option value="lowToHigh">Low to High</option>
-        <option value="highToLow">High to Low</option>
+        <option value="price_asc">Low to High</option>
+        <option value="price_desc">High to Low</option>
       </select>
 
-      <select id="sort-by">
+      <select>
         <option value="">Sort By</option>
         <option value="1">value 123</option>
         <option value="2">value 456</option>
