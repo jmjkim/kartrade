@@ -1,14 +1,9 @@
 import '@/styles/globals.css';
-import BackgroundImageDisplayer from '@/components/BackgroundImageDisplayer';
+import BackgroundImageDisplayer from '@/components/main/BackgroundImageDisplayer';
 import type { AppProps } from 'next/app';
 import TopNav from '@/components/nav/TopNav';
-import Footer from '@/components/Footer';
-import {
-  ChakraProvider,
-  extendTheme,
-  Box,
-  Flex,
-} from '@chakra-ui/react';
+import Footer from '@/components/main/Footer';
+import { ChakraProvider, extendTheme, Box, Flex } from '@chakra-ui/react';
 
 const theme = extendTheme({
   sizes: {
@@ -28,11 +23,12 @@ const theme = extendTheme({
     fs3: '16px',
     fs4: '20px',
     fs5: '22px',
-    fs6: '35px',
+    fs6: '30px',
+    fs7: '35px',
   },
 
   fontWeights: {
-    medium: 500,
+    medium: 600,
   },
 
   lineHeights: {
@@ -49,20 +45,16 @@ const theme = extendTheme({
 
   borders: {
     bdBottom: '1px solid #D8D8D8',
-  }
+  },
 });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <Flex
-        bg="gray.200"
-        align="center"
-        justify="space-evenly"
-      >
+      <Flex bg="gray.200" height="100vh" align="center" justify="space-evenly">
         <BackgroundImageDisplayer />
         <Box
-          maxH="100vh"
+          height="100vh"
           overflowY="scroll"
           maxW={['100%', '380px']}
           fontFamily="body"

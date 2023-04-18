@@ -1,5 +1,9 @@
 import React from 'react';
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
+import {
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+  NextApiResponse,
+} from 'next';
 import { CardData } from '../api/cards';
 import CardDetailHeader from '@/components/card/CardDetailHeader';
 import CardDetailDescription from '@/components/card/CardDetailDescription';
@@ -48,12 +52,12 @@ const CardDetailDisplayer = ({
 
 export default CardDetailDisplayer;
 
-// error handling when card is not found
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const res = await fetch(
-    `http://localhost:3000/api/cards/${context.query.id}`
-  );
-  const card: CardData = await res.json();
+  const res = await fetch(`http://localhost:3000/api/cards/${context.query.id}`);
+  const card: CardData | any = await res.json();
 
+  if (card.error) {
+    return { notFound: true };
+  }
   return { props: { card } };
 }

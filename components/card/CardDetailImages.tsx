@@ -2,7 +2,6 @@ import { CardData } from '@/pages/api/cards';
 import { Box, Divider } from '@chakra-ui/react';
 import { Image } from '@chakra-ui/react';
 
-// type error
 const CardDetailImages: React.FC<{ card: CardData }> = ({ card }) => {
   const detailImages = card.detailImage.map((img) =>
     img.replace('/public', '')

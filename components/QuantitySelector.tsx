@@ -1,7 +1,7 @@
 import { Box, HStack, Text } from '@chakra-ui/react';
 import minusIcon from '../asset/icon/minusIcon.svg';
 import plusIcon from '../asset/icon/plusIcon.svg';
-import ChakraImage from './ChakraImage';
+import ChakraImage from './utils/ChakraImage';
 import { useState } from 'react';
 
 const QuantitySelector = () => {

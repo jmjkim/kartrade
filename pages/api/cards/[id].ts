@@ -3,14 +3,14 @@ import { CardData, dummyCardInfo } from '../cards';
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<CardData | Object>
+  res: NextApiResponse<CardData | object>
 ) {
   const { id } = req.query;
   const card = dummyCardInfo.find((card) => String(card.id) === id);
 
-  if (card) {
-    res.status(200).json(card);
+  if (card === undefined) {
+    res.status(404).json({ error: 'Card not found' });
   } else {
-    res.status(404).json({ error: 'card not found' });
+    res.status(200).json(card);
   }
 }
