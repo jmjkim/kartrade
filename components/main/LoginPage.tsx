@@ -1,14 +1,34 @@
-import { Flex, Text, Input, Divider, Button, HStack, VStack } from "@chakra-ui/react"
+import { Flex, Text, Input, Divider, Button, VStack } from "@chakra-ui/react"
+import { useState, Dispatch } from "react";
 import googleIcon from "../../asset/icon/googleIcon.svg"
 import facebookIcon from "../../asset/icon/facebookIcon.svg"
 import twitterIcon from "../../asset/icon/twitterIcon.svg"
 import ChakraImage from "../utils/ChakraImage"
+import sendAuthLinkToEmail from "@/auth/auth_email_link_send";
 
-const LoginPage = () => {
+const LoginPage = ({ setShowSignUpPage }: Dispatch<React.SetStateAction<boolean>>) => {
+    const [ email, setEmail ] = useState("")
+
     return (
-        <Flex flexDir="column" width="100%" px="25px">
-            <Text fontSize="fs6" fontWeight="medium" pt="48px" pb="55px">Sign In</Text>
-            <Input fontSize="fs2" variant="unstyled" placeholder="EMAIL" />
+        <Flex 
+            flexDir="column" 
+            width="100%" 
+            px="25px"
+        >
+            <Text 
+                fontSize="fs6" 
+                fontWeight="medium" 
+                pt="48px" 
+                pb="55px"
+            >
+                Sign In
+            </Text>
+            <Input 
+                fontSize="fs2" 
+                variant="unstyled" 
+                placeholder="EMAIL" 
+                onChange={(e) => setEmail(e.target.value)}
+             />
             <Divider borderBottom="bdBottom" />
 
             <Button
@@ -19,52 +39,93 @@ const LoginPage = () => {
                 height="55px"
                 mt="35px"
                 mb="51px"
+                onClick={() => sendAuthLinkToEmail(email)}
             >
-                <Text fontSize="fs3">SIGN IN</Text>
+                <Text fontSize="fs3">
+                    SIGN IN
+                </Text>
             </Button>
 
             <Flex align="center">
                 <Divider borderBottom="bdBottom" />
-                <Text px="33px">OR</Text>
+                <Text px="33px">
+                    OR
+                </Text>
                 <Divider borderBottom="bdBottom" />
             </Flex>
 
-            <VStack spacing="19px" flexDir="column" mt="39px" mb="30px">
+            <VStack 
+                spacing="19px" 
+                flexDir="column" 
+                mt="39px" 
+                mb="30px"
+            >
                 <Button
-                    leftIcon={<ChakraImage src={googleIcon} alt="google" width="20px" height="20px" />}
+                    leftIcon={ 
+                        <ChakraImage 
+                            src={googleIcon} 
+                            alt="google" 
+                            width="20px" 
+                            height="20px" 
+                        /> }
                     width="100%"
                     height="55px"
                     bg="#FFF"
                     border="1px solid #777"
                     borderRadius="74px"
                 >
-                    <Text fontSize="fs3">Continue with Google</Text>
+                    <Text fontSize="fs3">
+                        Continue with Google
+                    </Text>
                 </Button>
 
                 <Button
-                    leftIcon={<ChakraImage src={facebookIcon} alt="facebook" width="20px" height="20px" />}
+                    leftIcon={ 
+                        <ChakraImage 
+                            src={facebookIcon} 
+                            alt="facebook" 
+                            width="20px" 
+                            height="20px"
+                        /> }
                     width="100%"
                     height="55px"
                     bg="#FFF"
                     border="1px solid #777"
                     borderRadius="74px"
                 >
-                    <Text fontSize="fs3">Continue with Facebook</Text>
+                    <Text fontSize="fs3">
+                        Continue with Facebook
+                    </Text>
                 </Button>
 
                 <Button
-                    leftIcon={<ChakraImage src={twitterIcon} alt="twitter" width="20px" height="20px" />}
+                    leftIcon={ 
+                        <ChakraImage 
+                            src={twitterIcon} 
+                            alt="twitter" 
+                            width="20px" 
+                            height="20px"
+                        /> }
                     width="100%"
                     height="55px"
                     bg="#FFF"
                     border="1px solid #777"
                     borderRadius="74px"
                 >
-                    <Text fontSize="fs3">Continue with Twitter</Text>
+                    <Text fontSize="fs3">
+                        Continue with Twitter
+                    </Text>
                 </Button>
             </VStack>
 
-            <Text>We will email you a magic code for password-free sign in. Or you can <u><b>sign up manually</b></u></Text>
+            <Text>
+                We will email you a magic code for password-free sign in. Or you can 
+                <u>
+                    <b id="show_sign_up_page" onClick={() => setShowSignUpPage(true)}>
+                        sign up manually
+                    </b>
+                </u>
+            </Text>
         </Flex>
     )
 }
