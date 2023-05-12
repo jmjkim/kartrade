@@ -9,8 +9,8 @@ import LoginPage from '@/components/main/LoginPage';
 import SignUpPage from '@/components/login/SignUp';
 import CardDisplayer from '@/components/CardDisplayer';
 import SortPrice from '@/components/nav/SortPrice';
-import signOutUser from '../auth/auth_sign_out';
-import CheckUserWithEmailLink from '../auth/email_link_complete'
+import signOutUser from '@/lib/firebase-auth/auth_sign_out';
+import CheckUserWithEmailLink from '@/lib/firebase-auth/email_link_complete'
 
 export default function Home ({ cards }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const auth = getAuth()
@@ -36,16 +36,16 @@ export default function Home ({ cards }: InferGetServerSidePropsType<typeof getS
         <button onClick={() => signOutUserAndRedirectToHome()}>sign out</button>
 
         <SortPrice />
-        <Divider 
-          mt="18.5px" 
-          mb="25.5px" 
-          borderBottom="bdBottom" 
+        <Divider
+          mt="18.5px"
+          mb="25.5px"
+          borderBottom="bdBottom"
         />
 
         <Box px="25px">
           <MainCardDisplayer />
         </Box>
-        <Divider 
+        <Divider
           my="25px"
           borderBottom="bdBottom"
         />
