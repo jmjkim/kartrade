@@ -4,37 +4,41 @@ import googleIcon from "../../asset/icon/googleIcon.svg"
 import facebookIcon from "../../asset/icon/facebookIcon.svg"
 import twitterIcon from "../../asset/icon/twitterIcon.svg"
 import ChakraImage from "../utils/ChakraImage"
-import sendAuthLinkToEmail from "../../auth/auth_email_link_send"
+import FirebaseAuth from '@/lib/firebase-auth';
+// import sendAuthLinkToEmail from "@/lib/firebase-auth/auth_email_link_send"
+
+const firebaseAuth = new FirebaseAuth();
+
 
 const SignUpPage = () => {
     const [email, setEmail] = useState("")
 
     return (
         <Flex flexDir="column" width="100%" px="25px">
-            <Text 
-                fontSize="fs6" 
-                fontWeight="medium" 
-                pt="48px" 
+            <Text
+                fontSize="fs6"
+                fontWeight="medium"
+                pt="48px"
                 pb="55px"
             >Sign Up
             </Text>
-            <Input 
-                fontSize="fs2" 
-                variant="unstyled" 
+            <Input
+                fontSize="fs2"
+                variant="unstyled"
                 placeholder="NAME"
             />
-            <Divider 
-                borderBottom="bdBottom" 
-                mb="42px" 
+            <Divider
+                borderBottom="bdBottom"
+                mb="42px"
             />
-            <Input 
-                fontSize="fs2" 
-                variant="unstyled" 
+            <Input
+                fontSize="fs2"
+                variant="unstyled"
                 placeholder="EMAIL"
                 onChange={(e) => setEmail(e.target.value)}
             />
-            <Divider 
-                borderBottom="bdBottom" 
+            <Divider
+                borderBottom="bdBottom"
             />
             <Button
                 bg="#1B1B1B"
@@ -44,7 +48,7 @@ const SignUpPage = () => {
                 height="55px"
                 mt="35px"
                 mb="51px"
-                onClick={() => sendAuthLinkToEmail(email)}
+                onClick={() => firebaseAuth.sendAuthLinkToEmail(email)}
             >
                 <Text fontSize="fs3">SIGN UP</Text>
             </Button>
