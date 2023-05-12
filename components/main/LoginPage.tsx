@@ -1,31 +1,12 @@
-<<<<<<< HEAD
-import { Flex, Text, Input, Divider, Button, VStack } from "@chakra-ui/react"
-import { useState, Dispatch } from "react";
-import googleIcon from "../../asset/icon/googleIcon.svg"
-import facebookIcon from "../../asset/icon/facebookIcon.svg"
-import twitterIcon from "../../asset/icon/twitterIcon.svg"
-import ChakraImage from "../utils/ChakraImage"
-import sendAuthLinkToEmail from "@/auth/auth_email_link_send";
-import { provider } from "../../auth/google/auth_google_provider_create"
-import { SignInWithPopup } from "../../auth/google/auth_google_signin_popup"
-import { useRouter } from "next/router";
-
-const LoginPage = ({ setShowSignUpPage }: Dispatch<React.SetStateAction<boolean>>) => {
-    const router = useRouter()
-    const [ email, setEmail ] = useState("")
-=======
 import { Flex, Text, Input, Divider, Button, VStack } from '@chakra-ui/react';
 import { useState, Dispatch } from 'react';
 import googleIcon from '../../asset/icon/googleIcon.svg';
 import facebookIcon from '../../asset/icon/facebookIcon.svg';
 import twitterIcon from '../../asset/icon/twitterIcon.svg';
 import ChakraImage from '../utils/ChakraImage';
-import { provider } from '@/lib/firebase-auth/google/auth_google_provider_create';
-import { SignInWithPopup } from '@/lib/firebase-auth/google/auth_google_signin_popup';
 import FirebaseAuth from '@/lib/firebase-auth';
 
 const firebaseAuth = new FirebaseAuth();
->>>>>>> 603b7c6b636ab61254788896de3536b1b4fa81e8
 
 const LoginPage = ({
   setShowSignUpPage,
@@ -53,7 +34,7 @@ const LoginPage = ({
         height="55px"
         mt="35px"
         mb="51px"
-        onClick={() => firebaseAuth.sendAuthLinkToEmail(email)}
+        onClick={() => FirebaseAuth.sendAuthLinkToEmail(email)}
       >
         <Text fontSize="fs3">SIGN IN</Text>
       </Button>
@@ -121,33 +102,6 @@ const LoginPage = ({
         </Button>
       </VStack>
 
-<<<<<<< HEAD
-            <VStack 
-                spacing="19px" 
-                flexDir="column" 
-                mt="39px" 
-                mb="30px"
-            >
-                <Button
-                    leftIcon={ 
-                        <ChakraImage 
-                            src={googleIcon} 
-                            alt="google" 
-                            width="20px" 
-                            height="20px" 
-                        /> }
-                    width="100%"
-                    height="55px"
-                    bg="#FFF"
-                    border="1px solid #777"
-                    borderRadius="74px"
-                    onClick={() => SignInWithPopup(provider, router)}
-                >
-                    <Text fontSize="fs3">
-                        Continue with Google
-                    </Text>
-                </Button>
-=======
       <Text>
         We will email you a magic code for password-free sign in. Or you can
         <u>
@@ -159,6 +113,5 @@ const LoginPage = ({
     </Flex>
   );
 };
->>>>>>> 603b7c6b636ab61254788896de3536b1b4fa81e8
 
 export default LoginPage;
