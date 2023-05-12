@@ -10,9 +10,9 @@ const CardDetailIncludedItems = () => {
             <CardBody>
                 <Stack>
                     <Text>Contains:</Text>
-                    <Text>value 1</Text>
-                    <Text>value 2</Text>
-                    <Text>value 3</Text>
+                    <Text>voluptate velit esse</Text>
+                    <Text>excepteur sint</Text>
+                    <Text>sunt in culpa qui officia</Text>
                 </Stack>
             </CardBody>
         </Card>

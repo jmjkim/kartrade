@@ -2,7 +2,6 @@ import React from 'react';
 import {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
-  NextApiResponse,
 } from 'next';
 import { CardData } from '../api/cards';
 import CardDetailHeader from '@/components/card/CardDetailHeader';
