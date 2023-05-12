@@ -33,7 +33,7 @@ export default function Home ({ cards }: InferGetServerSidePropsType<typeof getS
   if (auth.currentUser !== null) {
     return (
       <>
-        <button onClick={() => signOutUserAndRedirectToHome(setShowLoginPage, router)}>sign out</button>
+        <button onClick={() => signOutUserAndRedirectToHome()}>sign out</button>
 
         <SortPrice />
         <Divider 
@@ -61,7 +61,7 @@ export default function Home ({ cards }: InferGetServerSidePropsType<typeof getS
   return (
     <>
       <button onClick={() => setShowLoginPage(true)}>bypass login</button>
-      <LoginPage setShowSignUpPage={setShowSignUpPage} />
+      <LoginPage setShowSignUpPage={() => setShowSignUpPage()} />
     </>
   )
 }
