@@ -5,6 +5,8 @@ import facebookIcon from "../../asset/icon/facebookIcon.svg"
 import twitterIcon from "../../asset/icon/twitterIcon.svg"
 import ChakraImage from "../utils/ChakraImage"
 import sendAuthLinkToEmail from "@/auth/auth_email_link_send";
+import { provider } from "../../auth/google/auth_google_provider_create"
+import { SignInWithPopup } from "../../auth/google/auth_google_signin_popup"
 
 const LoginPage = ({ setShowSignUpPage }: Dispatch<React.SetStateAction<boolean>>) => {
     const [ email, setEmail ] = useState("")
@@ -73,6 +75,7 @@ const LoginPage = ({ setShowSignUpPage }: Dispatch<React.SetStateAction<boolean>
                     bg="#FFF"
                     border="1px solid #777"
                     borderRadius="74px"
+                    onClick={() => SignInWithPopup(provider)}
                 >
                     <Text fontSize="fs3">
                         Continue with Google
